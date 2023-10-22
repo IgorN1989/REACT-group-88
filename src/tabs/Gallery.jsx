@@ -20,6 +20,17 @@ export class Gallery extends Component {
       <>
         <Text textAlign="center">Sorry. There are no images ... 😭</Text>
         <SearchForm onSubmit={this.onSubmit} />
+        <Grid>
+          <GridItem>
+            <CardItem 
+            color ={}>
+              <img 
+              src=''
+              alt='' />
+
+            </CardItem>
+          </GridItem>
+        </Grid>
       </>
     );
   }
