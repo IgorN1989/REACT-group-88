@@ -30,10 +30,26 @@ export class Gallery extends Component {
 
   render() {
     return (
+
       <>
-        <Text textAlign="center">Sorry. There are no images ... 😭</Text>
+       {(this.state.photos.length ===0)  &&  <Text textAlign="center">Sorry. There are no images ... 😭</Text>}
         <SearchForm onSubmit={this.onSubmit} />
+        {(this.state.photos.length !==0)&&<Grid>
+         { this.state.photos.map((el)=> {
+     return       <GridItem key={el.id}>
+          
+          <CardItem 
+          color ={el.avg_color}>
+            <img 
+            src= {el.src.medium}
+            alt= {el.alt} />
+          </CardItem>
+        </GridItem>
+           })}
+          
+        </Grid>}
       </>
+      
     );
   }
 }
