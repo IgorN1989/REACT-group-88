@@ -17,7 +17,7 @@ export const Country = () => {
       .finally(() => {
         setLoader(false);
       });
-  }, []);
+  }, [id]);
 
   return (
     <Section>
