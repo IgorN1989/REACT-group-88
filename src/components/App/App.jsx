@@ -1,42 +1,14 @@
-import {
-  BlogCard,
-  Container,
-  Section,
-  Heading,
-  Statistics,
-  ForbesList,
-  CryptoHistory,
-} from 'components';
-
-import article from 'data/article.json';
-import data from 'data/data.json';
-import forbesData from 'data/forbes.json';
-import transaction from 'data/transactions.json';
+import { Header } from 'components';
+import { CountrySearch, Home, Country } from 'pages';
+import { Route, Routes } from 'react-router';
+import { routes } from 'routes';
 
 export const App = () => {
   return (
-    <Section>
-      <Container>
-        <Heading marginBottom="50px" textAlign="center">
-          Task 1
-        </Heading>
-        <BlogCard {...article} />
-
-        <Heading marginTop="50px" marginBottom="50px" textAlign="center">
-          Task 2
-        </Heading>
-        <Statistics title="Main Statistics" stats={data} />
-
-        <Heading marginTop="50px" marginBottom="50px" textAlign="center">
-          Task 3
-        </Heading>
-        <ForbesList forbesData={forbesData} />
-
-        <Heading marginTop="50px" marginBottom="50px" textAlign="center">
-          Task 4
-        </Heading>
-        <CryptoHistory transaction={transaction} />
-      </Container>
-    </Section>
+    <Routes>
+      <Route path={routes.HOME} element={<Header />}>
+        <Route index element={<Home />} />
+      </Route>
+    </Routes>
   );
 };
