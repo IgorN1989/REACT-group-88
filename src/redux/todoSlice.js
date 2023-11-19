@@ -12,5 +12,5 @@ const todoSlice = createSlice({
   },
 });
 
-export const { increment, decrement, incrementByAmount } = todoSlice.actions;
+export const { addTodo } = todoSlice.actions;
 export const todoReducer = todoSlice.reducer;
