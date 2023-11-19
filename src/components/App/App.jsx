@@ -1,42 +1,43 @@
-import {
-  BlogCard,
-  Container,
-  Section,
-  Heading,
-  Statistics,
-  ForbesList,
-  CryptoHistory,
-} from 'components';
+import { Component } from 'react';
+import { nanoid } from 'nanoid';
 
-import article from 'data/article.json';
-import data from 'data/data.json';
-import forbesData from 'data/forbes.json';
-import transaction from 'data/transactions.json';
+import {
+  Container,
+  Grid,
+  GridItem,
+  Header,
+  SearchForm,
+  Section,
+  Text,
+  Todo,
+} from 'components';
+import { selectTodo } from 'redux/selectors';
+import { useSelector } from 'react-redux';
 
 export const App = () => {
+  const todos = useSelector(selectTodo);
+
   return (
-    <Section>
-      <Container>
-        <Heading marginBottom="50px" textAlign="center">
-          Task 1
-        </Heading>
-        <BlogCard {...article} />
+    <>
+      <Header />
+      <Section>
+        <Container>
+          <SearchForm />
 
-        <Heading marginTop="50px" marginBottom="50px" textAlign="center">
-          Task 2
-        </Heading>
-        <Statistics title="Main Statistics" stats={data} />
+          {todos.length === 0 && (
+            <Text textAlign="center">There are no any todos ... </Text>
+          )}
 
-        <Heading marginTop="50px" marginBottom="50px" textAlign="center">
-          Task 3
-        </Heading>
-        <ForbesList forbesData={forbesData} />
-
-        <Heading marginTop="50px" marginBottom="50px" textAlign="center">
-          Task 4
-        </Heading>
-        <CryptoHistory transaction={transaction} />
-      </Container>
-    </Section>
+          <Grid>
+            {todos.length > 0 &&
+              todos.map((todo, index) => (
+                <GridItem key={todo.id}>
+                  <Todo id={todo.id} text={todo.text} counter={index + 1} />
+                </GridItem>
+              ))}
+          </Grid>
+        </Container>
+      </Section>
+    </>
   );
 };
