@@ -13,8 +13,15 @@ const todoSlice = createSlice({
       const id = action.payload;
       state.todos = state.todos.filter(todo => todo.id !== id);
     },
+    editTodo(state, action) {
+      state.todos = state.todos.map(item =>
+        item.id === action.payload.id
+          ? { ...item, text: action.payload.text }
+          : item
+      );
+    },
   },
 });
 
-export const { addTodo, deleteTodo } = todoSlice.actions;
+export const { addTodo, deleteTodo, editTodo } = todoSlice.actions;
 export const todoReducer = todoSlice.reducer;
